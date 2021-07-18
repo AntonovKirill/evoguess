@@ -1,17 +1,3 @@
-from numpy.random.mtrand import RandomState
-
-
-# def get_values(variables, seed=None, solution=None):
-#     if solution is not None:
-#         try:
-#             return [solution[x - 1] for x in variables]
-#         except IndexError:
-#             raise Exception('Solution have too few variables: %d' % len(solution))
-#     else:
-#         values = RandomState(seed=seed).randint(2, size=len(variables))
-#         return [x if values[i] else -x for i, x in enumerate(variables)]
-
-
 class Variables:
     slug = 'variables'
     name = 'Variables'
@@ -56,9 +42,6 @@ class Variables:
 
     def __contains__(self, item):
         return item in self.variables()
-
-    # def values(self, **kwargs):
-    #     return get_values(self.variables(), **kwargs)
 
     def __info__(self):
         return {

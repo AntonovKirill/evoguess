@@ -25,7 +25,7 @@ class Instance:
         return isfile(self.cnf.path)
 
     def get_backdoor(self, slug, **kwargs):
-        return backdoors[slug](**kwargs, _list=self.input_set)
+        return backdoors[slug](self.cnf.base, _list=self.input_set)
 
     def get_backdoor2(self, kind, base, mask):
         Constructor = next(filter(attreq('kind', kind), backdoors.values()), None)

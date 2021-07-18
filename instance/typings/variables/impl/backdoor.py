@@ -1,4 +1,4 @@
-from .variables import *
+from ..variables import *
 
 import warnings
 from copy import copy
@@ -9,7 +9,8 @@ class Backdoor(Variables):
     slug = 'backdoor'
     name = 'Backdoor'
 
-    def __init__(self, _list=()):
+    def __init__(self, base=1, _list=()):
+        self.base = base
         super().__init__(sorted(set(_list)))
         self._mask = [True] * self.length
         self._variables = copy(self._list)
@@ -19,14 +20,18 @@ class Backdoor(Variables):
         if len(_list) != self.length:
             warnings.warn('Repeating variables in backdoor', Warning)
 
-    def get_copy(self, mask):
-        raise NotImplementedError
+    def __copy__(self):
+        return self.get_copy(self._mask)
 
     def variables(self):
         return self._variables
 
-    def __copy__(self):
-        return self.get_copy(self._mask)
+    def get_copy(self, mask):
+        backdoor = Backdoor(self.base, self._list)
+        return backdoor._set_mask(mask)
+
+    def get_mask(self):
+        return copy(self._mask)
 
     def _set_mask(self, mask):
         if len(mask) > self.length:
@@ -34,24 +39,8 @@ class Backdoor(Variables):
         else:
             delta = self.length - len(mask)
             self._mask = mask + [False] * delta
-
         self._variables = list(compress(self._list, self._mask))
         return self
-
-    def get_mask(self):
-        return copy(self._mask)
-
-    def get_bases(self):
-        raise NotImplementedError
-
-    def task_count(self):
-        raise NotImplementedError
-
-    def get_masks(self):
-        raise NotImplementedError
-
-    def get_mappers(self):
-        raise NotImplementedError
 
     @staticmethod
     def empty(base):

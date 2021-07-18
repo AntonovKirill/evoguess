@@ -3,8 +3,6 @@ import json
 from util import build
 from time import time as now
 
-from instance.typings.variables import BaseBackdoor
-
 from method import Method
 from executor import Executor
 from function import Function
@@ -74,7 +72,6 @@ if __name__ == '__main__':
         },
         'backdoor': {
             'slug': 'backdoor:base',
-            'base': 2
         }
     })
     pargs = json.loads(args)

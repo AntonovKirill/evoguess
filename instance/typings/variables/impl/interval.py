@@ -1,4 +1,4 @@
-from ..variables import Variables
+from ..variables import *
 
 
 class Interval(Variables):

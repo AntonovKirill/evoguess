@@ -9,7 +9,7 @@ from function import Function
 from instance import Instance
 from algorithm import Algorithm
 
-from instance.typings.variables import BaseBackdoor
+from instance.typings.variables import Backdoor
 
 if __name__ == '__main__':
     assert len(sys.argv) == 2, f'Invalid number of input args {len(sys.argv)}'
@@ -27,5 +27,5 @@ if __name__ == '__main__':
         ]}, **configuration
     )
 
-    backdoor = BaseBackdoor(2, algorithm.instance.secret_key)
+    backdoor = Backdoor(1, algorithm.instance.secret_key)
     solution = algorithm.start(backdoor)

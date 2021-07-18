@@ -14,7 +14,8 @@ class CNF:
     slug = 'cnf'
     name = 'CNF'
 
-    def __init__(self, path):
+    def __init__(self, path, base):
+        self.base = base
         self.path = os.path.join(TEMPLATE_PATH, path)
 
     def clauses(self):

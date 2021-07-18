@@ -1,12 +1,13 @@
 from .interval import *
-from .base_backdoor import *
+from .backdoor import *
 
 types = {
     Interval.slug: Interval,
+    Backdoor.slug: Backdoor,
 }
 
 backdoors = {
-    BaseBackdoor.slug: BaseBackdoor
+    Backdoor.slug: Backdoor
 }
 
 for kind, backdoor in enumerate(backdoors.values()):
@@ -14,5 +15,5 @@ for kind, backdoor in enumerate(backdoors.values()):
 
 __all__ = [
     'Interval',
-    'BaseBackdoor'
+    'Backdoor'
 ]

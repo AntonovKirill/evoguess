@@ -3,5 +3,5 @@ from . import variables
 
 types = {
     CNF.slug: CNF,
-    **variables.types
+    **variables.types,
 }
